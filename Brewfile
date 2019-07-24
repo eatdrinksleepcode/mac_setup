@@ -16,3 +16,5 @@ cask "disk-inventory-x"
 
 ## Java
 cask "java"
+cask "intellij-idea-ce"
+
