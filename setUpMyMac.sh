@@ -1,11 +1,20 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
+
+targetUser=${1:-$(whoami)}
 
 if [ $(which brew) ]; then
   echo "Skipping installation of Homebrew (already installed)"
 else
   ./homebrew-install.sh
+fi
+
+./homebrew-setup.sh "${targetUser}"
+
+if [ "${targetUser}" != "$(whoami)" ]; then
+  echo "Switch to '${targetUser}' and run setup again."
+  exit 0
 fi
 
 brew bundle
