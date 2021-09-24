@@ -6,16 +6,18 @@
 	autocrlf = input
 [push]
 	default = current
-
 [alias]
 	co = checkout
 	fixup = commit -a --amend --no-edit
 	unstage = reset HEAD --
         log-all = log --all --graph --decorate --graph
-	diff-branch = "!git diff $(git merge-base master ${1:-HEAD}) ${1:-} #"
-	exec-branch = "!git rebase -i $(git merge-base master HEAD) --exec \"${1:-}\" #"
+	log-ahead = log @{u}..
+    default-branch = "!basename $(git rev-parse --abbrev-ref origin/HEAD)"
+	log-branch = "!git log --oneline ${1:-$(git default-branch)}.."
+	diff-branch = "!git diff ${1:-$(git default-branch)}... #"
+	exec-branch = "!git rebase -i --keep-base ${2:-$(git default-branch)} --exec \"${1:-}\" #"
 	trim-branch = !git branch -d $(git branch --list | grep -v \"^\\*\")
-	rebase-branch = !git rebase -i $(git merge-base master HEAD)
+	rebase-branch = !git rebase -i --keep-branch ${1:-$(git default-branch)}
 	branch-cleanup = "!git branch -d $(git branch --list | grep -v \"^*\")"
 	lol = log --pretty=format:'%Cgreen%ad%Creset %C(auto)%h%d %s %C(bold blue)<%aN>%Creset' --date=format-local:'%Y-%m-%d %H:%M (%a)'
 	ff = merge --ff-only @{u}
@@ -34,3 +36,10 @@
 	abbrevcommit = true
 [submodule]
 	recurse = true
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
