@@ -1,5 +1,12 @@
+[user]
+	name = David Nelson
+	email = eatdrinksleepcode@gmail.com
+[core]
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
 [push]
-	default = simple
+	default = current
+
 [alias]
 	co = checkout
 	fixup = commit -a --amend --no-edit
@@ -10,7 +17,20 @@
 	trim-branch = !git branch -d $(git branch --list | grep -v \"^\\*\")
 	rebase-branch = !git rebase -i $(git merge-base master HEAD)
 	branch-cleanup = "!git branch -d $(git branch --list | grep -v \"^*\")"
+	lol = log --pretty=format:'%Cgreen%ad%Creset %C(auto)%h%d %s %C(bold blue)<%aN>%Creset' --date=format-local:'%Y-%m-%d %H:%M (%a)'
+	ff = merge --ff-only @{u}
+	unpushed = lol --branches --tags --not --remotes --no-walk
+
 [pull]
 	rebase = true
 [fetch]
 	prune = true
+[advice]
+	addIgnoredFile = false
+	detachedHead = false
+[rebase]
+	autostash = true
+[log]
+	abbrevcommit = true
+[submodule]
+	recurse = true
