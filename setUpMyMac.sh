@@ -7,7 +7,9 @@ targetUser=${1:-$(whoami)}
 if [ $(which brew) ]; then
   echo "Skipping installation of Homebrew (already installed)"
 else
+  echo "Installing Homebrew ..."
   ./homebrew-install.sh
+  echo "Done installing Homebrew"
 fi
 
 ./homebrew-setup.sh "${targetUser}"
@@ -20,12 +22,16 @@ fi
 brew bundle
 
 if [ ! -e ~/.oh-my-zsh ]; then
+  echo "Installing Oh-My-Zsh ..."
   ./oh-my-zsh-install.sh || exit
+  echo "Done installing Oh-My-Zsh"
 else
   echo "Skipping installation of Oh-My-Zsh (already installed)"
 fi
 if [ ! -e ~/.oh-my-zsh/custom/themes/powerlevel9k ]; then
+  echo "Installing PowerLevel9K theme ..."
   git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+  echo "Done installing PowerLevel9K theme"
 else
   echo "Skipping installation of PowerLevel9K theme (already installed)"
 fi
@@ -34,7 +40,9 @@ fi
 if [ -e ~/Library/Fonts/"Droid Sans Mono for Powerline Nerd Font Complete.otf" ]; then
   echo "Skipping installation of Powerline font (already installed)"
 else
+  echo "Installing Powerline font ..."
   curl -fLo ~/Library/Fonts/"Droid Sans Mono for Powerline Nerd Font Complete.otf" https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.otf
+  echo "Done installing Powerline font"
 fi
 cp .zshrc ~/.zshrc
 cp -f com.googlecode.iterm2.plist ~/Library/Preferences
