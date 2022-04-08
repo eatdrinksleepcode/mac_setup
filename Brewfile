@@ -4,17 +4,19 @@ tap "homebrew/cask"
 cask "firefox"
 
 # Shell
+brew "dos2unix"
 cask "iterm2"
-brew "zsh"
-brew "zsh-completions"
 brew "jq"
 brew "watch"
-brew "dos2unix"
+brew "zsh"
+brew "zsh-completions"
+
+# IDEs
+cask "intellij-idea-ce"
+cask "jetbrains-toolbox"
 
 # General
+cask "1password"
+cask "alfred"
 cask "disk-inventory-x"
-
-## Java
-cask "java"
-cask "intellij-idea-ce"
-
+cask "spotify"
