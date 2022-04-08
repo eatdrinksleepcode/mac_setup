@@ -28,12 +28,12 @@ if [ ! -e ~/.oh-my-zsh ]; then
 else
   echo "Skipping installation of Oh-My-Zsh (already installed)"
 fi
-if [ ! -e ~/.oh-my-zsh/custom/themes/powerlevel9k ]; then
-  echo "Installing PowerLevel9K theme ..."
-  git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-  echo "Done installing PowerLevel9K theme"
+if [ ! -e ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k ]; then
+  echo "Installing PowerLevel10K theme ..."
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+  echo "Done installing PowerLevel10K theme"
 else
-  echo "Skipping installation of PowerLevel9K theme (already installed)"
+  echo "Skipping installation of PowerLevel10K theme (already installed)"
 fi
 #Set theme:
 #ZSH_THEME="powerlevel9k/powerlevel9k"
