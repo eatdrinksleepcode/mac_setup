@@ -59,5 +59,6 @@ else
   echo "Done installing iTerm preferences"
 fi
 
-cp .gitconfig ~/.gitconfig
-
+echo "Configuring git..."
+./git-config.sh
+echo "Done configuring git"
