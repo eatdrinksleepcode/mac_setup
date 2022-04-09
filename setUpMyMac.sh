@@ -61,4 +61,5 @@ fi
 
 echo "Configuring git..."
 ./git-config.sh
+cp .gitignore_global ~/.gitignore_global
 echo "Done configuring git"
