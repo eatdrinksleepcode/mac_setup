@@ -35,8 +35,7 @@ if [ ! -e ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k ]; then
 else
   echo "Skipping installation of PowerLevel10K theme (already installed)"
 fi
-#Set theme:
-#ZSH_THEME="powerlevel9k/powerlevel9k"
+
 if [ -e ~/Library/Fonts/"Droid Sans Mono for Powerline Nerd Font Complete.otf" ]; then
   echo "Skipping installation of Powerline font (already installed)"
 else
@@ -44,7 +43,12 @@ else
   curl -fLo ~/Library/Fonts/"Droid Sans Mono for Powerline Nerd Font Complete.otf" https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.otf
   echo "Done installing Powerline font"
 fi
-cp .zshrc ~/.zshrc
+
+echo "Ensuring .my.zsh is loaded in .zshrc ..."
+cp .my.zsh ~/
+cp .p10k.zsh ~/
+(grep "\.my\.zsh" ~/.zshrc > /dev/null) || (echo "\n[[ ! -f ~/.my.zsh ]] || source ~/.my.zsh" >> ~/.zshrc)
+echo "Done"
 
 if [ -e ~/Library/Preferences/com.googlecode.iterm2.plist ]; then
   echo "Skipping installation of iTerm preferences since they already exist"
