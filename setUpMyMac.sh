@@ -45,7 +45,15 @@ else
   echo "Done installing Powerline font"
 fi
 cp .zshrc ~/.zshrc
-cp -f com.googlecode.iterm2.plist ~/Library/Preferences
+
+if [ -e ~/Library/Preferences/com.googlecode.iterm2.plist ]; then
+  echo "Skipping installation of iTerm preferences since they already exist"
+  echo "> To overwrite existing iTerm preferences, run ./iterm-prefs-install.sh"
+else
+  echo "Installing iTerm preferences ..."
+  ./iterm-prefs-install.sh
+  echo "Done installing iTerm preferences"
+fi
 
 cp .gitconfig ~/.gitconfig
 
